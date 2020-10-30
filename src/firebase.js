@@ -13,7 +13,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const firebaseDb = firebase.database();
-export { firebaseDb };
+const googleAuth = new firebase.auth.GoogleAuthProvider();
+export { firebase, firebaseDb, googleAuth };
 // firebaseDb.ref("users").set([
 //   {
 //     id: 1,
