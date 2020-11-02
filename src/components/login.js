@@ -7,10 +7,24 @@ class Login extends Component {
   signIn = () => {
     firebase.auth().signInWithPopup(googleAuth);
   };
+  signOut = () => {
+    firebase.auth().signOut();
+  };
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({
+        status: user ? false : true,
+      });
+    });
+  }
   render() {
     return (
       <div>
-        <button onClick={this.signIn}>Login</button>
+        {this.state.status ? (
+          <button onClick={this.signIn}>Login</button>
+        ) : (
+          <button onClick={this.signOut}>Log Out</button>
+        )}
       </div>
     );
   }
